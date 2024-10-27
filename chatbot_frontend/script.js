@@ -42,6 +42,39 @@ function formatReport(text) {
     return formattedText;
 }
 
+function extractImageLinks(data) {
+    const imageLinks = [];
+
+    data.citations.forEach(citation => {
+        const matches = citation.content.match(/Image Link:\s*(\S+\.jpg)/g);
+
+        if (matches) {
+            matches.forEach(match => {
+                // Extract image link from the match
+                const imageLink = match.replace("Image Link: ", "");
+                imageLinks.push(imageLink);
+            });
+        }
+    });
+
+    return imageLinks;
+}
+
+function displayImages(imageLinks) {
+    const container = document.createElement("div"); // Div dove inserire le immagini
+
+    imageLinks.forEach(link => {
+        const imgElement = document.createElement("img");
+        imgElement.src = "data/images/"+link;
+        imgElement.alt = "Damage Image";
+        imgElement.style.width = "150px"; // Imposta una dimensione per ogni immagine
+        imgElement.style.margin = "10px";
+
+        container.appendChild(imgElement);
+    });
+    return container
+}
+
 async function sendMessage() {
     const userInput = document.getElementById('user-input').value;
     if (userInput.trim() === "") return;
@@ -67,10 +100,14 @@ async function sendMessage() {
 
     // Ottieni la risposta dal bot e aggiorna il messaggio
     try {
-        let responseMessage = await callPrompt(userInput);
-        responseMessage = JSON.parse(responseMessage).choices[0].message.content;
+        let response = await callPrompt(userInput);
+        responseMessage = JSON.parse(response).choices[0].message.content;
+        const imageLinks = extractImageLinks(JSON.parse(response).choices[0].message.context);
+
         const formatResponse = formatReport(responseMessage);
-        botMessage.innerHTML = formatResponse;
+        botMessage.innerHTML = formatResponse
+        let imgHtml =  displayImages(imageLinks);
+        botMessage.appendChild(imgHtml);
     } catch (error) {
         botMessage.textContent = "Sorry, try again later.";
         console.error("Error:", error);
