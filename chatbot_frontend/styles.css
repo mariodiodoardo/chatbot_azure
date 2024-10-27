@@ -100,3 +100,27 @@ body {
     background-color: #ccc;
     border-radius: 8px;
 }
+
+
+/* Aggiungi qui il tuo CSS per le immagini */
+.header-images {
+    position: absolute;
+    height: 100px;
+    opacity: 0.3;
+}
+
+.header-images img {
+    position: absolute;
+    height: 80px; /* Imposta l'altezza delle immagini */
+    width: auto; /* Mantiene le proporzioni */
+}
+
+.top-left {
+    top: 10px; /* Distanza dal bordo superiore */
+    left: 10px; /* Distanza dal bordo sinistro */
+}
+
+.top-right {
+    top: 10px; /* Distanza dal bordo superiore */
+    right: 10px; /* Distanza dal bordo destro */
+}
