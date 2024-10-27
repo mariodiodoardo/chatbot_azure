@@ -1,19 +1,19 @@
 from flask import Flask, request, jsonify
-from azure_api import api_azure  # Importa la classe definita in azure_api.py
+from lib.azure_api import ApiAzure  # Importa la classe definita in azure_api.py
 
 app = Flask(__name__)
 
 # Inizializza una sola istanza della classe `api_azure`
-azure_client = api_azure()
+azure_client = ApiAzure()
 
-@app.route('/send_text', methods=['POST'])
-def send_text():
+@app.route('/getPromptContent', methods=['POST'])
+def getPromptContent():
     # Recupera il testo dalla richiesta
-    text = request.json.get("text")
+    content = request.json.get("content")
     
     try:
         # Usa il metodo `api_call` della classe `api_azure` per inviare la richiesta
-        response = azure_client.api_call(content=text)
+        response = azure_client.prompt_call(content=content)
         
         # Restituisci la risposta JSON dal completamento dell'API di Azure OpenAI
         return jsonify(response)
