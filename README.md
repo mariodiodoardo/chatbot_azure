@@ -57,7 +57,7 @@ The project is organized into two main folders:
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/yourusername/makehaton_2024_swiss_challenge.git
+    git clone https://github.com/mariodiodoardo/makehaton_2024_swiss_challenge
     ```
 2. Navigate to the backend directory:
     ```bash
