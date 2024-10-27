@@ -106,7 +106,7 @@ body {
 .header-images {
     position: absolute;
     height: 100px;
-    opacity: 0.3;
+    opacity: 0.15;
 }
 
 .header-images img {
