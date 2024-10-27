@@ -1,0 +1,34 @@
+name: Run Python Script with Secrets
+
+on:
+  push:
+    branches:
+      - main  # Il workflow si attiverà su ogni push al branch "main"; modifica se necessario
+
+jobs:
+  run-python-script:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout del repository
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # Step 2: Setup dell'ambiente Python
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.10'  # Sostituisci con la versione di Python necessaria
+
+      # Step 3: Installazione delle dipendenze (assicurati che requirements.txt sia presente)
+      - name: Install dependencies
+        run: |
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      # Step 4: Esecuzione dello script Python con le variabili d'ambiente dai GitHub Secrets
+      - name: Run Python script
+        env:
+          SEARCH_KEY: ${{ secrets.SEARCH_KEY }}
+          AZURE_OPENAI_API_KEY: ${{ secrets.AZURE_OPENAI_API_KEY }}
+        run: |
+          python your_script.py  # Sostituisci con il nome del tuo script Python
