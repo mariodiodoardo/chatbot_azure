@@ -19,7 +19,7 @@ function sendMessage() {
     userMessage.textContent = userInput;
     chatBox.appendChild(userMessage);
 
-    // Simula il messaggio del bot
+    // Messaggio di attesa del bot
     const botMessage = document.createElement('div');
     botMessage.classList.add('message', 'bot');
     botMessage.textContent = 'Sto elaborando la tua richiesta...';
@@ -31,9 +31,24 @@ function sendMessage() {
     // Scorri automaticamente verso il basso
     chatBox.scrollTop = chatBox.scrollHeight;
 
-    // Simula una risposta del bot dopo 1 secondo
-    setTimeout(() => {
-        botMessage.textContent = 'Ciao! Come posso aiutarti oggi?';
+    // Invio della richiesta all'API Flask
+    fetch("https://hidden-phantasm-9qxjwrj49552q4v-3000.app.github.dev/getPromptContent", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ content: userInput })
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Modifica il testo del bot con la risposta dell'API
+        botMessage.textContent = data.message || "Risposta non disponibile";
         chatBox.scrollTop = chatBox.scrollHeight;
-    }, 1000);
+    })
+    .catch(error => {
+        // Mostra un messaggio di errore se la richiesta fallisce
+        botMessage.textContent = "Si è verificato un errore, riprova.";
+        console.error("Errore:", error);
+        chatBox.scrollTop = chatBox.scrollHeight;
+    });
 }
