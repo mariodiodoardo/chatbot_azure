@@ -1,0 +1,10 @@
+event_timestamp;image;ac-part;aircraft;isdamaged;typeofdamage;damage_attribute;severity_level;recommendation
+26/10/2024 14:48;image_1.jpg;tail;A350;True;lightning strike;"{""size"": 36.0, ""amount"": 1, ""angles"": 138.3}";0,7;repair
+26/10/2024 14:48;image_2.jpg;wing left;A350;True;lightning strike;"{""size"": 28.9, ""amount"": 1}";0,2;fly
+26/10/2024 14:48;image_3.jpg;wing right;A350;False;;;;fly
+26/10/2024 14:48;image_5.jpg;fuselage;A350;True;bird strike;"{""amount"": 1}";0,1;fly
+26/10/2024 14:48;image_6.jpg;nose;B737;True;hail;"{""amount"": 1}";0,3;fly
+26/10/2024 14:48;image_7.jpg;fuselage;B737;True;lightning strike;"{""size"": 20.6, ""amount"": 1, ""angles"": 83.0}";0,1;fly
+26/10/2024 14:48;image_8.jpg;wing left;B737;False;;;;fly
+26/10/2024 14:48;image_9.jpg;tail;B737;True;hail;"{""size"": 46.8, ""amount"": 1}";0,9;repair
+26/10/2024 14:48;image_10.jpg;wing right;B737;False;;;;fly
