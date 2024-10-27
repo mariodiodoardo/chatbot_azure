@@ -62,8 +62,9 @@ function extractImageLinks(data) {
 
 function displayImages(imageLinks) {
     const container = document.createElement("div"); // Div dove inserire le immagini
-
+    var i =0;
     imageLinks.forEach(link => {
+        if (i < 2) {
         const imgElement = document.createElement("img");
         imgElement.src = "data/images/"+link;
         imgElement.alt = "Damage Image";
@@ -71,6 +72,9 @@ function displayImages(imageLinks) {
         imgElement.style.margin = "10px";
 
         container.appendChild(imgElement);
+        i++;
+
+        }
     });
     return container
 }
