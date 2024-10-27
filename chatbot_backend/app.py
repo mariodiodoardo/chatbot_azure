@@ -18,7 +18,6 @@ def getPromptContent():
         response = azure_client.prompt_call(content=content)
         
         # Restituisci la risposta JSON dal completamento dell'API di Azure OpenAI
-        print(response)
         return jsonify(response)
     
     except Exception as e:
