@@ -33,7 +33,7 @@ class ApiAzure:
     "data_sources": [{
       "type": "azure_search",
       "parameters": {
-        "endpoint": f"{self.search_endpoint}",
+        "endpoint": f"{self.__search_endpoint}",
         "semantic_configuration": "default",
         "query_type": "simple",
         "fields_mapping": {},
