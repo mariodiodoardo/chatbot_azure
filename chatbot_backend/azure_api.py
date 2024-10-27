@@ -9,8 +9,8 @@ class api_azure:
     self.__endpoint = os.getenv("ENDPOINT_URL", "https://rag-makeathon.openai.azure.com/")
     self.__deployment = os.getenv("DEPLOYMENT_NAME", "gpt-4o-mini")
     self.__search_endpoint = os.getenv("SEARCH_ENDPOINT", "https://openai-resource-makeathon.search.windows.net")
-    self.__search_key = os.getenv("SEARCH_KEY", "")
-    self.__subscription_key = os.getenv("AZURE_OPENAI_API_KEY", "")
+    self.__search_key = os.getenv("SEARCH_KEY")
+    self.__subscription_key = os.getenv("AZURE_OPENAI_API_KEY")
 
     # Inizializzare il client OpenAI di Azure con l'autenticazione basata su chiave
     self.client = AzureOpenAI(
