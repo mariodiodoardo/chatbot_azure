@@ -1,7 +1,9 @@
 from flask import Flask, request, jsonify
 from lib.azure_api import ApiAzure  # Importa la classe definita in azure_api.py
+from flask_cors import CORS  # Importa CORS
 
 app = Flask(__name__)
+CORS(app)  # Abilita CORS per tutte le rotte
 
 # Inizializza una sola istanza della classe `api_azure`
 azure_client = ApiAzure()
@@ -16,6 +18,7 @@ def getPromptContent():
         response = azure_client.prompt_call(content=content)
         
         # Restituisci la risposta JSON dal completamento dell'API di Azure OpenAI
+        print(response)
         return jsonify(response)
     
     except Exception as e:
